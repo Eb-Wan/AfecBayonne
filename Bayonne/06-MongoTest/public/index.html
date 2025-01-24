@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>com.net</title>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="diplay-flex-row flex-justify-between bordered-light"><div class="large-text text-bold text-italic">com.net</div><button>log in</button></header>
+    <form onsubmit="getUser(event)">
+        <label for="name">Name(opionnal): </label><input id="name" name="name" type="text">
+        <label for="email">Email(opionnal): </label><input id="email" name="email" type="text">
+        <button type="submit">Find user</button>
+    </form>
+    <div id="container" class="grid-container">
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+Création du serveur : Le serveur est créé avec le module http et écoute sur le port 3000. Il gère trois routes principales :
+ 
+        Route /create-menu : Cette route crée le fichier menu.json avec une liste de plats. La réponse renvoie un message de confirmation.
+ 
+        Route /menu : Cette route lit le fichier menu.json et renvoie les données sous forme de JSON. Le client peut récupérer ces données pour afficher le menu.
+ 
+        Route / (Page d'accueil) : Cette route affiche une page HTML contenant un bouton. Lorsque l'utilisateur clique sur ce bouton, une requête est envoyée à la route /menu pour récupérer le menu et l'afficher dans la page.
+ 
+    Création du fichier JSON :
+        Lorsque la route /create-menu est appelée, un tableau d'objets représentant le menu du restaurant est créé. Ce tableau est ensuite converti en une chaîne JSON et écrit dans le fichier menu.json à l'aide de fs.writeFile.
+ 
+    Lecture du fichier JSON :
+        Lorsque la route /menu est appelée, le fichier menu.json est lu à l'aide de fs.readFile et son contenu est renvoyé au client sous forme de JSON.
+ 
+    Interaction via un bouton :
+        La page HTML d'accueil contient un bouton. Lorsque le bouton est cliqué, une fonction JavaScript afficherMenu() utilise fetch pour envoyer une requête GET à la route /menu et afficher les plats sur la page.

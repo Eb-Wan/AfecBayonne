@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Utilisateurs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="hero is-primary is-bold">
+        <div class="hero-body">
+            <h1 class="title has-text-centered">Gestion des Utilisateurs</h1>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <form id="userForm" class="box">
+                <div class="field">
+                    <input id="nom" class="input" type="text" placeholder="Nom" required>
+                </div>
+                <div class="field">
+                    <input id="prenom" class="input" type="text" placeholder="Prénom" required>
+                </div>
+                <button class="button is-primary is-fullwidth">Ajouter</button>
+            </form>
+
+            <div class="box">
+                <h2 class="title is-5">Liste des utilisateurs</h2>
+                <ul id="userList"></ul>
+            </div>
+        </div>
+    </section>
+    <div id="editWindow" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <form id="editForm" class="box">
+                <input id="userId" type="hidden" required>
+                <div class="field">
+                    <input id="nomEdit" class="input" type="text" placeholder="Nom" required>
+                </div>
+                <div class="field">
+                    <input id="prenomEdit" class="input" type="text" placeholder="Prénom" required>
+                </div>
+                <button class="button is-primary is-fullwidth">Modifier</button>
+            </form>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
+
+

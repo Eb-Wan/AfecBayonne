@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mogoose": "^0.0.1-security",
+    "mongoose": "^8.9.4",
+    "nodemon": "^3.1.9"
+  },
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "name": "mongotest",
+  "version": "1.0.0",
+  "main": "db-test.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

@@ -1,0 +1,28 @@
+project/
+│
+├── models/
+│   └── User.js       # Schéma Mongoose pour un utilisateur
+│
+├── controllers/
+│   └── userController.js # Contient la logique pour gérer les utilisateurs
+│
+├── routes/
+│   └── userRoutes.js  # Définit les routes associées aux utilisateurs
+│
+├── config/
+│   └── db.js          # Configuration de la connexion MongoDB
+│
+├── server.js          # Point d’entrée de l’application
+├── .env               # Variables d'environnement
+└── package.json       # Fichier des dépendances 
+
+Mise en place de l’architecture MVC
+
+L’architecture MVC (Modèle-Vue-Contrôleur) est une manière organisée de structurer les projets, notamment les applications Express. Elle est utilisée pour séparer les responsabilités :
+
+    Modèle (Model) : Gère les données et la logique métier. Exemple : Définir un schéma Mongoose pour MongoDB.
+    Vue (View) : Présente les données à l’utilisateur. Dans le cas d’une API REST, cela correspond généralement aux réponses JSON.
+    Contrôleur (Controller) : Conti
+    
+    Vue (View) : Présente les données à l’utilisateur. Dans le cas d’une API REST, cela correspond généralement aux réponses JSON.
+    Contrôleur (Controller) : Contient la logique applicative, notamment le traitement des requêtes et réponses.
