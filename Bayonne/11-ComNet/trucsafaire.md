@@ -5,6 +5,7 @@
         -Register
         -Log in
         -Chat
+        -Mot de passe oublié
 
     1. routes user
         -post /db/user { name, email, password }
