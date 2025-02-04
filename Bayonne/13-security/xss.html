@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xss</title>
+</head>
+<body>
+    <form action="javascript:void(0);" onsubmit="handleInput()">
+        <input id="input" type="text">
+        <button type="submit">Lesss go</button>
+    </form>
+
+    <h1>XSS attack</h1>
+    <div id="output"></div>
+
+    <script>
+
+        const getIpAddress = () => fetch("https://api.ipify.org?format=json").then(res => res.json()).then(data => data.ip).catch(err => {console.error(err); return "Ip inconnue";})
+
+        function handleInput() {
+            const input = clean(document.getElementById("input").value);
+            const output = document.getElementById("output")
+            output.innerHTML = input;
+            const script = document.getElementsByTagName("script");
+            for (let i = 0; i < script.length; i++) {
+                eval(script[i].innerText);
+            }
+            getIpAddress().then(ip => {
+                const scripts = document.createElement("script");
+                console.log(input)
+                scripts.innerText = `alert(\`Got: ${input} with ip: ${ip}\`);`;
+                document.body.appendChild(scripts)
+            })
+        }
+
+        const clean = (string) => string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+    </script>
+</body>
+</html>
