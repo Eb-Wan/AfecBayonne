@@ -1,0 +1,38 @@
+.background-register {
+  background-image: url("../../../public/images/login-background.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.button-register {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 255, 255, 1) 0%,
+    rgba(0, 150, 255, 1) 100%
+  );
+  border: none;
+  color: #1a1a1a !important;
+  padding: 10px 70px !important;
+  text-transform: uppercase !important;
+  font-weight: bold !important;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+  margin-top: 25px;
+}
+
+.button-register:hover {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 150, 255, 1) 0%,
+    rgba(0, 255, 255, 1) 100%
+  );
+  color: #1a1a1a;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 1), 0 0 40px rgba(0, 150, 255, 1);
+  border: none;
+}
