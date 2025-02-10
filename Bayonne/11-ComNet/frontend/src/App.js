@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import apiClient from "./apiClient";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -19,11 +19,15 @@ import ForgotPassword from "./pages/ForgotPassword";
 function App() {
     
     const [isConnected, setConnected] = useState(false);
+    const [accessRights, setAccessRights] = useState(false);
     useEffect(() => {
         if (!document.cookie) return;
-        axios.get("http://localhost:4000/api/user/", { withCredentials: true })
+        apiClient.get("/api/user/", { withCredentials: true })
         .then(res => {
-            if (res.data.success === true) setConnected(true);
+            if (res.data.success === true) {
+                setConnected(true);
+                setAccessRights(res.data.data.accessRights);
+            }
         }).catch(err => {
             if (err.response) {
                 if (err.response.status !== 304) console.log(err.message);
@@ -38,7 +42,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home isConnected={isConnected} />}></Route>
                 <Route path="/chat" element={<Chat isConnected={isConnected} />}></Route>
-                <Route path="/settings" element={<Settings isConnected={isConnected} />}></Route>
+                <Route path="/settings" element={<Settings isConnected={isConnected} accessRights={accessRights}/>}></Route>
                 <Route path="/login" element={<Login isConnected={isConnected} />}></Route>
                 <Route path="/register" element={<Register isConnected={isConnected} />}></Route>
                 <Route path="/logout" element={<Logout isConnected={isConnected} />}></Route>

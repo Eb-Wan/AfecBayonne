@@ -270,6 +270,9 @@ input:-webkit-autofill:active {
     border-radius: 5px;
 }
 
+.normal {
+    color: var(--primary-text);
+}
 .info {
     color: var(--primary-text);
     background-color: #BBBBFF88;

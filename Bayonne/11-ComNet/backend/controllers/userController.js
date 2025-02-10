@@ -7,6 +7,7 @@ dotenv.config();
 
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const sgMail = require('@sendgrid/mail');
 
 const createToken = (_id) => jwt.sign( { _id: _id } , process.env.JWT_SECRET, { expiresIn: "2 days" });
 
@@ -16,13 +17,19 @@ exports.sendVerification = async (req, res, next) => {
         if (!id) throw new Error(400, "No user id");
         const user = await userModel.findById(id);
         if (!user) throw new Error(404, "User not found");
-        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         const msg = {
             to: user.email,
             from: 'eb.wan.dev@gmail.com',
             subject: 'ComNet email address verification',
             text: 'You need to comfirm your email address to start using ComNet',
-            html: '<a href="google.com">Click here to comfirm you email address</a>',
+            html: `
+                <h1>Welcome to Comnet</h1>
+                <p>You are just one step away from being able to use Comnet, click on the link and validate your email addres to activate your account.</p>
+                <a href="${process.env.FRONTEND_HOST}">Click here to comfirm you email address</a> and activate your account.
+                <br>
+                <p>Tanks for trying Comnet !</p>
+            `,
         }
         await sgMail.send(msg);
         res.status(200).json({ success: true })

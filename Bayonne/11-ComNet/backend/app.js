@@ -14,7 +14,7 @@ connectDB();
 
 const app = express();
 const PORT = process.env.PORT;
-const CORS_ORIGIN = process.env.CORS_ORIGIN;
+const CORS_ORIGIN = process.env.FRONTEND_HOST;
 
 app.use(express.json());
 app.use(cookieParser())

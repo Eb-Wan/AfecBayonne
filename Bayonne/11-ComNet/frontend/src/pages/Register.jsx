@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from "axios";
+import apiClient from "../apiClient";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -21,7 +21,7 @@ const Register = ({ isConnected }) => {
             password: formData.get("password"),
             passMatch: formData.get("passMatch")
         }
-        axios.post("http://localhost:4000/api/user/register", body)
+        apiClient.post("/api/user/register", body)
         .then(res => {
             document.cookie = `comNetToken=${res.data.token}; expires=${new Date(Date.now() + 86400e3).toUTCString()}`
             window.location.replace("/");

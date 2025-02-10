@@ -1,27 +1,28 @@
 import React from 'react';
-import { useState } from 'react';
-const axios = require("axios");
+import { useState, useEffect } from 'react';
+import apiClient from "../apiClient";
 
 const Settings = ({ isConnected, accessRights }) => {
     document.title = "Login - ComNet";
-    if (isConnected) window.location.replace("/");
+    if (!isConnected) window.location.replace("/");
+
     const [message, setMessage] = useState();
-    if (accessRights === "Unverified") setMessage(<p className='message error'>Your email has not been verified. <a href='#' onClick={sendVerification}>Send verication email</a></p>);
+    useEffect(() => {
+        if (accessRights === "Unverified") setMessage(
+            <p className='message error'>Your email has not been verified. <a href='#' className="normal" onClick={sendVerification}>Send verication email</a></p>
+        );
+    }, []);
     function sendVerification(e) {
         e.preventDefault();
-        const formData = new FormData(e.target);
-        const body = {
-            name: formData.get("name"),
-            password: formData.get("password")
-        }
-        axios.post(process.env.BACKEND_DOMAIN+"/api/user/auth", body)
+        apiClient.get("/api/user/sendverification", { withCredentials: true })
         .then(res => {
-            document.cookie = `comNetToken=${res.data.token}; expires=${new Date(Date.now() + 86400e3).toUTCString()}`
-            window.location.replace("/");
-
+            if (res.data.success == false) throw new Error(res.data.message);
+            setMessage(
+                <p className='message info'>A validation email has been sent. Please check your emails to validate your email address and activate your account. <a href='#' className="normal" onClick={sendVerification}>Resend verication email</a></p>
+            );
         }).catch(err => {
             const message = (err.response) ? err.response.data.message : err.message;
-            setMessage(<p className='message error'>Info: {message}. <a href='#' onClick={sendVerification}>Resend verication email</a></p>);
+            setMessage(<p className='message error'>Info: {message}. <a href='#' className="normal" onClick={sendVerification}>Resend verication email</a></p>);
         });
     }
     return (

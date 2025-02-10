@@ -1,5 +1,5 @@
 import React from 'react';
-import apiClient from "../axios";
+import apiClient from "../apiClient";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
