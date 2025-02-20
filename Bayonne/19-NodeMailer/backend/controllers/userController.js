@@ -46,6 +46,8 @@ exports.register = async (req, res, next) => {
         const { error } = registerValidation(req.body);
         if (error) return res.status(400).json({ message: error.details[0].message });
 
+        const { name, email, password } = req.body;
+
         const salt = await bcrypt.genSalt(10);
         const hashPass = await bcrypt.hash(password, salt);
         
